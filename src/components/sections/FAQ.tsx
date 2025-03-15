@@ -22,7 +22,8 @@ export default component$((props: Props) => {
     return (
         <section class="scroll-mt-16">
             <Card.Root>
-                <div class="dark:border-gray-700 border-gray-200 border">
+            <Card.Image src='/images/hero1.webp' class="h-20"/>
+
                     <Card.Header class="relative">
                         <div class="absolute inset-y-0 right-[1%] items-center flex opacity-20 z-10 text-gray-500">
                             <svg 
@@ -95,7 +96,6 @@ export default component$((props: Props) => {
                             </Accordion.Item>
                         </Accordion.Root>
                     </Card.Content>
-                </div>
             </Card.Root>
         </section>
     );
