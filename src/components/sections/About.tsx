@@ -16,7 +16,6 @@ export default component$((props: Props) => {
     return (
         <section class="scroll-mt-16">
             <Card.Root>
-                <div class="dark:border-gray-700 border-gray-200 border">
                     <Card.Header class="relative">
                         <div class="absolute inset-y-0 right-[1%] items-center flex opacity-20 z-10 text-gray-500">
                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 animate-[spin_1.5s_ease-in-out]">
@@ -32,7 +31,6 @@ export default component$((props: Props) => {
                     <Card.Content>
                         <ServicesCarousel />
                     </Card.Content>
-                </div>
             </Card.Root>
         </section>
     );
