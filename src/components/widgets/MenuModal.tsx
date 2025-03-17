@@ -1,6 +1,6 @@
 import { component$, useSignal } from "@builder.io/qwik";
 import { Modal } from "../ui/Modal";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 import { LuX, LuArrowLeft, LuChevronRight } from "@qwikest/icons/lucide";
 import { cn } from "@qwik-ui/utils";
 import { Logo } from "../common/Logo";
