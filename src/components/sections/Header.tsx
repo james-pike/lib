@@ -102,14 +102,14 @@ export default component$(() => {
 
         <div class="relative text-default md:px-6 mx-auto w-full md:flex md:justify-between max-w-7xl">
           <div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
-            <a href="/" class="p-0 bg-gray-100 rounded-sm flex items-center h-full dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <a href="/" class="p-0 bg-gray-100 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
               <Logo />
             </a>
             <div class="flex items-center md:hidden gap-0.5">
               {/* <a class="p-0 rounded-sm bg-yellow-50 dark:bg-gray-800 dark:border-gray-700 flex items-center h-full border border-yellow-200">
                 <ToggleTheme iconClass="w-6 h-6" />
               </a> */}
-              <a href="/" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border border-blue-200 dark:border-gray-700">
+              <a href="/" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
                 Get A Quote
               </a>
               <MenuModal />
