@@ -29,13 +29,6 @@ const styles = `
 
 
 
-interface TabContent {
-    title: string;
-    description: string;
-    icon: any;
-}
-
-
 interface Props {
     title?: any;
     subtitle?: any;
