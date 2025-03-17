@@ -129,27 +129,10 @@ KasLords Of The BlockDag            </Modal.Description>
                       )}
                     </li>
                   ))}
-                  <li class="p-2 px-3 pb-3 ">
-                    <Button
-                      look="primary"
-                      onClick$={() => {
-                        alert("Logged out!");
-                        show.value = false;
-                      }}
-                      class="w-full text-left bg-primary-400 dark:bg-primary-600 text-white"
-                    >
-                      Order Online
-                    </Button>
-                  </li>
+                 
                 </ul>
                 
-                <div class="bg-gray-100 dark:bg-gray-800 h-40 w-full flex items-center justify-center text-center p-3">
-                  <div class="w-full h-full bg-primary-25 dark:bg-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-800">Warm Up Your Day!</h2>
-                    <p class="text-lg text-gray-600 mt-1">Enjoy 15% off all lattes this week.</p>
-                    <p class="text-sm text-primary-600 font-medium mt-2">Use code: LATTELOVE</p>
-                  </div>
-                </div>
+              
               </div>
             )}
           </nav>
