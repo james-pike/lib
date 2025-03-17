@@ -1,10 +1,8 @@
-import { $, component$, useSignal, useStore } from "@builder.io/qwik";
+import {  component$, useSignal, useStore } from "@builder.io/qwik";
 import { useContent, useLocation } from "@builder.io/qwik-city";
 import IconChevronDown from "../icons/IconChevronDown";
 import { Logo } from "../common/Logo";
 import MenuModal from "../widgets/MenuModal";
-import IconTwitter from "../icons/IconTwitter";
-import IconTelegram from "../icons/IconTelegram";
 import { cn } from '@qwik-ui/utils';
 import { LuX } from '@qwikest/icons/lucide';
 import { Modal } from '../ui/Modal';
@@ -18,24 +16,24 @@ export default component$(() => {
     isMenuExpanded: false,
   });
 
-  const isBannerVisible = useSignal(() => {
-    if (typeof window !== 'undefined') {
-      return sessionStorage.getItem('bannerClosed') !== 'true';
-    }
-    return true;
-  });
+  // const isBannerVisible = useSignal(() => {
+  //   if (typeof window !== 'undefined') {
+  //     return sessionStorage.getItem('bannerClosed') !== 'true';
+  //   }
+  //   return true;
+  // });
 
   const show = useSignal(false); // Shared state for the modal
 
   const { menu } = useContent();
   const location = useLocation();
 
-  const handleCloseBanner = $(() => {
-    isBannerVisible.value = false;
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('bannerClosed', 'true');
-    }
-  });
+  // const handleCloseBanner = $(() => {
+  //   isBannerVisible.value = false;
+  //   if (typeof window !== 'undefined') {
+  //     sessionStorage.setItem('bannerClosed', 'true');
+  //   }
+  // });
 
   return (
     <>
