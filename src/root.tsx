@@ -24,7 +24,7 @@ export default component$(() => {
         <RouterHead />
         <DarkThemeLauncher />
         <ServiceWorkerRegister />
-        <script
+        {/* <script
           dangerouslySetInnerHTML={`
             window.$crisp = [];
             window.CRISP_WEBSITE_ID = "283b7c7f-4f69-4725-ba15-f11822e24856";
@@ -36,7 +36,7 @@ export default component$(() => {
               d.getElementsByTagName("head")[0].appendChild(s);
             })();
           `}
-        />
+        /> */}
              <link rel="preload" href="/images/hero1.webp" as="image" />
                 <link rel="preload" href="/images/hero2.webp" as="image" />
         

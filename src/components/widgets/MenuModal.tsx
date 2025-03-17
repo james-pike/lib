@@ -16,11 +16,11 @@ export default component$(() => {
   // Menu items array structure
   const menuItems = [
     { title: "Home", href: "/", badge: null },
-    { title: "About", href: "/about/", badge: null },
+    { title: "About", href: "/", badge: null },
   
     { 
       title: "Services", 
-      href: "/services/",
+      href: "/",
       hasSubmenu: true,
       subitems: [
         { title: "Web Design", href: "/services/web-design" },
@@ -30,17 +30,16 @@ export default component$(() => {
     },
     { 
       title: "Portfolio", 
-      href: "/gallery/", 
+      href: "/", 
       badge: <Badge class="absolute -top-0.1 left-14.5 bg-primary-300 text-white text-xs px-1 py-0 rounded">New</Badge> 
     },
     { 
       title: "Reviews", 
-      href: "/reviews/", 
-      badge: <Badge class="absolute -top-0.1 left-14.5 bg-primary-300 text-white text-xs px-1 py-0 rounded">New</Badge> 
+      href: "/", 
     },
-    { title: "Technology", href: "/technology/", badge: null },
-    { title: "FAQ", href: "/faq/", badge: null },
-    { title: "Contact Us", href: "/contact/", badge: null }
+    { title: "Technology", href: "/", badge: null },
+    { title: "FAQ", href: "/", badge: null },
+    { title: "Contact Us", href: "/", badge: null }
   ];
 
   // Get services subitems safely
@@ -64,7 +63,7 @@ export default component$(() => {
               </a>
             </Modal.Title>
             <Modal.Description class="text-md font-medium px-2 py-1 text-gray-700 dark:text-gray-200">
-Safe & Auto Inc            </Modal.Description>
+KasLords Of The BlockDag            </Modal.Description>
           </div>
 
           {/* Navigation Content */}

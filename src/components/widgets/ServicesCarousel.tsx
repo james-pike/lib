@@ -12,22 +12,22 @@ export const CarouselProgress = component$((props: PropsOf<typeof Progress.Root>
 export default component$(() => {
   const services = [
     {
-      title: 'Web Development',
+      title: 'Wizard',
       description: 'Building responsive and modern web applications',
-      image: '/images/hero1.webp'
+      image: '/images/wixard.png'
     },
     {
-      title: 'Mobile Apps',
+      title: 'Elf',
       description: 'Creating native and cross-platform mobile solutions',
-      image: '/images/hero1.webp'
+      image: '/images/warrior.png'
     },
     {
-      title: 'UI/UX Design',
+      title: 'Dwarf',
       description: 'Designing intuitive and beautiful user interfaces',
-      image: '/images/hero1.webp'
+      image: '/images/elf.png'
     },
     {
-      title: 'Cloud Services',
+      title: 'Dragon',
       description: 'Implementing scalable cloud infrastructure',
       image: '/images/hero1.webp'
     },
@@ -77,11 +77,11 @@ export default component$(() => {
             ))}
           </Carousel.Pagination>
           <a
-            href="/services"
+            href="/"
             class="text-sm font-medium hover:underline"
             style={{ transform: 'translateY(5px)' }} // Fine-tune downward shift
           >
-            Browse Portfolio -&gt;
+            Browse All Classes -&gt;
           </a>
         </div>
       </Carousel.Root>

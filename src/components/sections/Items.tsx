@@ -1,10 +1,29 @@
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { Card } from "../ui/Card";
+import { CardHeadline } from "../ui/CardHeadline";
+import { Tabs } from '../ui/Tabs';
+import { Button } from '../ui/Button';
+import { Label } from '../ui/Label';
+import { Input } from '../ui/Input';
+import LogoClouds from './LogoClouds';
 
 
-import { component$, useSignal, useStyles$ } from "@builder.io/qwik";
+import { useStyles$ } from "@builder.io/qwik";
 import { twMerge } from "tailwind-merge";
-import { Tabs } from "~/components/ui/Tabs";
 
-
+const styles = `
+    @keyframes breathe {
+        0%, 100% {
+            box-shadow: 0 0 15px 5px rgba(59, 130, 246, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 25px 10px rgba(59, 130, 246, 0.5);
+        }
+    }
+    .breathing-glow {
+        animation: breathe 2s ease-in-out infinite;
+    }
+`;
 
 
 
@@ -122,85 +141,101 @@ interface TabContent {
 }
 
 
+interface Props {
+    title?: any;
+    subtitle?: any;
+    highlight?: any;
+    classes?: any;
+}
 
-// Assuming tabContent is defined above with the 9 technologies
-// ...
+const menuItems = [
+    { title: 'Espresso', description: 'Rich and bold espresso shot.', price: '$3.50', image: '/images/coffee.webp' },
+    { title: 'Cappuccino', description: 'Rich and bold espresso shot.', price: '$4.50', image: '/images/mocha.webp' },
+    { title: 'Latte', description: 'Rich and bold espresso shot.', price: '$4.00', image: '/images/mocha.webp' },
+    { title: 'Mocha', description: 'Rich and bold espresso shot.', price: '$4.75', image: '/images/coffee.webp' },
+  
+  ];
+  
+  const teaItems = [
+    { title: 'Matcha', description: 'Rich and bold espresso shot.', price: '$3.50', image: '/images/tea1.webp' },
+    { title: 'Green Tea', description: 'Rich and bold espresso shot.', price: '$4.50', image: '/images/tea2.webp' },
+    { title: 'Black Tea', description: 'Rich and bold espresso shot.', price: '$4.00', image: '/images/tea3.webp' },
+    { title: 'Earl Gray', description: 'Rich and bold espresso shot.', price: '$4.75', image: '/images/tea4.webp' },
+  ];
 
-const styles = `
-    @keyframes breathe {
-        0%, 100% {
-            box-shadow: 0 0 15px 5px rgba(59, 130, 246, 0.3);
-        }
-        50% {
-            box-shadow: 0 0 25px 10px rgba(59, 130, 246, 0.5);
-        }
-    }
-    .breathing-glow {
-        animation: breathe 2s ease-in-out infinite;
-    }
-`;
+export default component$((props: Props) => {
+    const { title = "", subtitle = "", highlight = "", classes = {} } = props;
 
-export default component$(() => {
-    const selectedIndex = useSignal<number | undefined>(0);
+      const selectedIndex = useSignal(0); 
+      const selectedIndex2 = useSignal<number | undefined>(0);
+      
+          useStyles$(styles);
 
-    useStyles$(styles);
+    
+      useVisibleTask$(({ track }) => {
+        track(() => selectedIndex.value); // Watch for tab changes
+    
+      });
 
     return (
-        <section class="relative scroll-mt-16 max-w-5xl mx-auto">
-
-            {/* Tabs Component */}
-            <Tabs.Root
-                selectedClassName='bg-white'
-                selectedIndex={selectedIndex.value}
-                onSelectedIndexChange$={(index) => (selectedIndex.value = index)}
-            >
-                <Tabs.List class="hidden grid-cols-4 sm:justify-start sm:inline-flex sm:space-x-4 w-full p-2 rounded-lg shadow-md">
-                    {tabContent.map((content, index) => (
-                        <Tabs.Tab key={index} class="px-4 py-2">{content.title}</Tabs.Tab>
-                    ))}
-                </Tabs.List>
-
-                {tabContent.map((content, index) => (
-                    <Tabs.Panel key={index}>
-                       
-                                <p class="">
-                                    <span class="text-2xl  font-bold">{content.title}</span> {content.description}
-                                </p>
-                         
-                    </Tabs.Panel>
-                ))}
-            </Tabs.Root>
-            <div class="grid grid-cols-3 lg:grid-cols-4 gap-0.5  md:gap-4 xl:gap-8 md:space-y-0 md:mb-8 md:mt-12">
-                {tabContent.map((content, index) => (
-                    <div
-                        key={index}
-                        class="relative p-1 cursor-pointer group"
-                        onClick$={() => selectedIndex.value = selectedIndex.value === index ? undefined : index}
-                    >
-                        <div class="relative flex items-center justify-center">
-                            <div
-                                class={twMerge(
-                                    "absolute inset-[-2px] hover:inset-[0px] rounded-none transition-all duration-300",
-                                    "bg-blue-100/50 dark:bg-blue-900/50", // Default background
-                                    "border border-gray-300 dark:border-gray-700",
-                                    selectedIndex.value === index && "bg-blue-300/70 dark:bg-blue-800/70 shadow-[0_0_20px_8px_rgba(59,130,246,0.6)] breathing-glow",
-                                    "group-hover:bg-blue-200/70 dark:group-hover:bg-blue-800/70 group-hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.4)]"
-                                )}
-                            />
-                            <div
-                                class={twMerge(
-                                    "relative bg-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800 w-full p-2",
-                                    "transition-transform duration-300",
-                                    selectedIndex.value === index && "scale-105",
-                                    "group-hover:scale-105"
-                                )}
-                            >
-                                {content.icon}
-                            </div>
+        <section class=" scroll-mt-16">
+            <Card.Root>
+                    <Card.Header class="relative">
+                        <div class="absolute inset-y-0 right-[1%] items-center flex opacity-20 z-10 text-gray-500">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 animate-[spin_1.5s_ease-in-out]">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7848 0.449982C13.8239 0.449982 14.7167 1.16546 14.9122 2.15495L14.9991 2.59495C15.3408 4.32442 17.1859 5.35722 18.9016 4.7794L19.3383 4.63233C20.3199 4.30175 21.4054 4.69358 21.9249 5.56605L22.7097 6.88386C23.2293 7.75636 23.0365 8.86366 22.2504 9.52253L21.9008 9.81555C20.5267 10.9672 20.5267 13.0328 21.9008 14.1844L22.2504 14.4774C23.0365 15.1363 23.2293 16.2436 22.7097 17.1161L21.925 18.4339C21.4054 19.3064 20.3199 19.6982 19.3382 19.3676L18.9017 19.2205C17.1859 18.6426 15.3408 19.6754 14.9991 21.405L14.9122 21.845C14.7167 22.8345 13.8239 23.55 12.7848 23.55H11.2152C10.1761 23.55 9.28331 22.8345 9.08781 21.8451L9.00082 21.4048C8.65909 19.6754 6.81395 18.6426 5.09822 19.2205L4.66179 19.3675C3.68016 19.6982 2.59465 19.3063 2.07505 18.4338L1.2903 17.1161C0.770719 16.2436 0.963446 15.1363 1.74956 14.4774L2.09922 14.1844C3.47324 13.0327 3.47324 10.9672 2.09922 9.8156L1.74956 9.52254C0.963446 8.86366 0.77072 7.75638 1.2903 6.8839L2.07508 5.56608C2.59466 4.69359 3.68014 4.30176 4.66176 4.63236L5.09831 4.77939C6.81401 5.35722 8.65909 4.32449 9.00082 2.59506L9.0878 2.15487C9.28331 1.16542 10.176 0.449982 11.2152 0.449982H12.7848ZM12 15.3C13.8225 15.3 15.3 13.8225 15.3 12C15.3 10.1774 13.8225 8.69998 12 8.69998C10.1774 8.69998 8.69997 10.1774 8.69997 12C8.69997 13.8225 10.1774 15.3 12 15.3Z"></path>
+                                </g>
+                            </svg>
                         </div>
-                    </div>
-                ))}
-            </div>
+                        <CardHeadline title={title} subtitle={subtitle} highlight={highlight} classes={classes?.headline} align="left" />
+                    </Card.Header>
+                   
+                   
+                    <Card.Content>
+                    <Tabs.Root 
+  selectedClassName='bg-white' 
+  class="max-w-5xl mx-auto flex flex-col" 
+  selectedIndex={selectedIndex.value} 
+  onSelectedIndexChange$={(index) => (selectedIndex.value = index)}
+>
+  {/* Responsive Tabs List with order-last */}
+  <Tabs.List class="grid grid-cols-4 sm:justify-start sm:inline-flex sm:space-x-4 w-full shadow-md order-last">
+    <Tabs.Tab class="px-4 py-2">Weapon</Tabs.Tab>
+    <Tabs.Tab class="px-4 py-2">Helmet</Tabs.Tab>
+    <Tabs.Tab class="px-4 py-2">Face</Tabs.Tab>
+    <Tabs.Tab class="px-4 py-2">Background</Tabs.Tab>
+  </Tabs.List>
+
+  {/* Tea Panel */}
+  <Tabs.Panel>
+    <LogoClouds/>
+  </Tabs.Panel>
+
+  <Tabs.Panel>
+
+  </Tabs.Panel>
+
+  {/* Bistro Panel */}
+  <Tabs.Panel>
+   
+  </Tabs.Panel>
+
+  {/* Dessert Panel */}
+  <Tabs.Panel>
+  
+  </Tabs.Panel>
+</Tabs.Root>
+                    </Card.Content>
+            </Card.Root>
         </section>
     );
 });
+
+
+
+
+
+

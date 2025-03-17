@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import { Card } from "../ui/Card";
 import { CardHeadline } from "../ui/CardHeadline";
 import IconStar from '../icons/IconStar';
-import { Image } from "@unpic/qwik";
+// import { Image } from "@unpic/qwik";
 
 
 interface Props {
@@ -49,11 +49,13 @@ export default component$((props: Props) => {
         },
       };
     
-      const { items, image } = stepsData;
+      const { items} = stepsData;
 
     return (
         <section class="scroll-mt-16">
             <Card.Root>
+            <Card.Image src='/images/roadmap.jpg' class="h-20"/>
+
                     <Card.Header class="relative">
                         <div class="absolute inset-y-0 right-[1%] items-center flex opacity-20 z-10 text-gray-500">
                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 animate-[spin_1.5s_ease-in-out]">
@@ -67,11 +69,11 @@ export default component$((props: Props) => {
                         <CardHeadline title={title} subtitle={subtitle} highlight={highlight} classes={classes?.headline} align="left" />
                     </Card.Header>
                     <Card.Content>
-<div class="motion-group md:col-start-2 md:row-start-1 order-2">
+<div class="md:col-start-2 md:row-start-1 order-2">
           {items.map(({ title, description, icon: Icon }, index) => (
             <div
               key={`item-steps-${index}`}
-              class={`flex opacity-0 intersect-once intersect:opacity-100 intersect:motion-preset-slide-up motion-delay-[${index * 150}ms]`}
+              class={`flex`}
             >
               <div class="mr-4 flex flex-col items-center">
                 <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary-900">
@@ -98,7 +100,7 @@ export default component$((props: Props) => {
             </div>
           ))}
         </div>   
-           {typeof image !== "undefined" && (
+           {/* {typeof image !== "undefined" && (
                   <div class="md:hidden order-3">
                     <Image
                       layout="constrained"
@@ -110,7 +112,7 @@ export default component$((props: Props) => {
                       breakpoints={[320, 480, 640, 768, 1024]}
                     />
                   </div>
-                )}
+                )} */}
                                  </Card.Content>
             </Card.Root>
         </section>

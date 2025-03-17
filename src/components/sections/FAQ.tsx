@@ -21,7 +21,7 @@ export default component$((props: Props) => {
 
     return (
         <section class="scroll-mt-16">
-            <Card.Root class="p-0">
+            <Card.Root class="">
             <Card.Image src='/images/hero1.webp' class="h-20"/>
 
                     <Card.Header class="relative">
