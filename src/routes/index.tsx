@@ -15,7 +15,7 @@ export default component$(() => {
   return (
     <>
     {/* <Hero/> */}
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
 
 <Card.Root class="py-8 px-4">
 <div class="flex flex-col">
