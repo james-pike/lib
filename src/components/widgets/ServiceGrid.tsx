@@ -4,12 +4,12 @@ import { Link } from "@builder.io/qwik-city"; // Import Link component
 const services = [
   {
     title: "Wizard",
-    description: "Professional photography services tailored for exhibitions and galleries.",
+    description: "Wizard Description.",
     details: "Showcase your artwork or exhibits with high-quality, detailed photography.",
     image: "/images/wizard.jpg",
     alt: "Exhibit Photography",
-    delay: 0,
-    slug: "exhibit-photography" // Added unique slug for routing
+    
+    slug: "wizard" // Added unique slug for routing
   },
   {
     title: "Elf",
@@ -17,7 +17,7 @@ const services = [
     details: "Ensure every detail is captured for stunning, true-to-life reproductions.",
     image: "/images/hero1.webp",
     alt: "Reproduction Services",
-    delay: 100,
+    
     slug: "reproduction-services"
   },
   {
@@ -26,7 +26,7 @@ const services = [
     details: "Highlight textures, colors, and emotions in your artwork.",
     image: "/images/hero1.webp",
     alt: "Fine Art Photography",
-    delay: 200,
+   
     slug: "fine-art-photography"
   },
   {
@@ -35,7 +35,7 @@ const services = [
     details: "Convert physical assets into high-quality digital formats.",
     image: "/images/hero1.webp",
     alt: "Digitization Services",
-    delay: 300,
+   
     slug: "digitization-services"
   },
   {
@@ -44,7 +44,7 @@ const services = [
     details: "Creative and fast solutions for on-the-go photography needs.",
     image: "/images/hero1.webp",
     alt: "Mobile Photography",
-    delay: 400,
+    
     slug: "mobile-photography"
   },
   {
@@ -53,7 +53,7 @@ const services = [
     details: "Ensure every memory is preserved with beautiful, candid shots.",
     image: "/images/hero1.webp",
     alt: "Event Photography",
-    delay: 500,
+    
     slug: "event-photography"
   },
 ];
@@ -61,12 +61,12 @@ const services = [
 export default component$(() => {
   return (
     <div class="grid mx-auto max-w-screen-xl mt-2 mb-2 md:mb-16 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 motion-group opacity-0 intersect-once intersect:opacity-100">
-      {services.map(({ title, description, details, image, alt, delay, slug }, index) => (
+      {services.map(({ title, description, details, image, alt, slug }, index) => (
         <Link
-          href={`/services/${slug}`} // Creates URL like "/services/exhibit-photography"
+          href={`/classes/${slug}`} // Creates URL like "/services/exhibit-photography"
           key={index}
           class="group relative overflow-hidden rounded-lg shadow-md motion-preset-slide-up no-underline"
-          style={{ "--motion-delay": `${delay}ms` }}
+          
         >
           <div class="relative aspect-[2/1]">
             <img
