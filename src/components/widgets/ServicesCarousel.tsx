@@ -14,7 +14,7 @@ export default component$(() => {
     {
       title: 'Wizard',
       description: 'Building responsive and modern web applications',
-      image: '/images/wixard.png'
+      image: '/images/wizard.jpg'
     },
     {
       title: 'Elf',
@@ -58,7 +58,7 @@ export default component$(() => {
               <img
                 src={service.image}
                 alt={service.title}
-                class="w-full h-44 object-cover rounded-none"
+                class="w-full h-60 object-cover rounded-none"
               />
               <div class="service-info p-2 bg-gray-200 dark:bg-gray-800 flex-1 overflow-hidden">
                 <h1 class="service-title text-lg font-bold truncate">{service.title}</h1>
@@ -77,7 +77,7 @@ export default component$(() => {
             ))}
           </Carousel.Pagination>
           <a
-            href="/"
+            href="/classes"
             class="text-sm font-medium hover:underline"
             style={{ transform: 'translateY(5px)' }} // Fine-tune downward shift
           >

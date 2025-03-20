@@ -15,36 +15,40 @@ export default component$(() => {
 
   // Menu items array structure
   const menuItems = [
-    { title: "Home", href: "/", badge: null },
-    { title: "About", href: "/", badge: null },
+   
+    { title: "Story", href: "/story", badge: null },
+    { title: "Roadmap", href: "/roadmap", badge: null },
+    { title: "Classes", href: "/classes", badge: null },
+    { title: "Inventory Items", href: "/classes", badge: <Badge class="absolute -top-0.1 left-14.5 bg-primary-300 text-white text-xs px-1 py-0 rounded">New</Badge> },
+    { title: "Rarity Guide", href: "/classes", badge: null },
   
-    { 
-      title: "Services", 
-      href: "/",
-      hasSubmenu: true,
-      subitems: [
-        { title: "Web Design", href: "/services/web-design" },
-        { title: "Development", href: "/services/development" },
-        { title: "SEO", href: "/services/seo" }
-      ]
-    },
-    { 
-      title: "Portfolio", 
-      href: "/", 
-      badge: <Badge class="absolute -top-0.1 left-14.5 bg-primary-300 text-white text-xs px-1 py-0 rounded">New</Badge> 
-    },
-    { 
-      title: "Reviews", 
-      href: "/", 
-    },
-    { title: "Technology", href: "/", badge: null },
-    { title: "FAQ", href: "/", badge: null },
-    { title: "Contact Us", href: "/", badge: null }
+    // { 
+    //   title: "Services", 
+    //   href: "/",
+    //   hasSubmenu: true,
+    //   subitems: [
+    //     { title: "Web Design", href: "/services/web-design" },
+    //     { title: "Development", href: "/services/development" },
+    //     { title: "SEO", href: "/services/seo" }
+    //   ]
+    // },
+    // { 
+    //   title: "Portfolio", 
+    //   href: "/", 
+    //    
+    // },
+    // { 
+    //   title: "Reviews", 
+    //   href: "/", 
+    // },
+    // { title: "Technology", href: "/", badge: null },
+    { title: "FAQ", href: "/faq/", badge: null },
+    { title: "Contact", href: "/contact/", badge: null }
   ];
 
   // Get services subitems safely
-  const servicesItem = menuItems.find(item => item.hasSubmenu);
-  const servicesSubitems = servicesItem?.subitems ?? [];
+  // const servicesItem = menuItems.find(item => item.hasSubmenu);
+  // const servicesSubitems = servicesItem?.subitems ?? [];
 
   return (
     <>
@@ -81,7 +85,7 @@ KasLords Of The BlockDag            </Modal.Description>
                   <h2 class="text-lg font-medium dark:text-gray-200 text-gray-700">Services</h2>
                 </div>
                 <ul class="flex flex-col gap-0 text-lg">
-                  {servicesSubitems.map((subitem) => (
+                  {/* {servicesSubitems.map((subitem) => (
                     <li key={subitem.title}>
                       <a
                         href={subitem.href}
@@ -94,7 +98,7 @@ KasLords Of The BlockDag            </Modal.Description>
                         {subitem.title}
                       </a>
                     </li>
-                  ))}
+                  ))} */}
                 </ul>
               </div>
             ) : (
@@ -103,18 +107,7 @@ KasLords Of The BlockDag            </Modal.Description>
                 <ul class="flex flex-col gap-0 text-lg">
                   {menuItems.map((item) => (
                     <li key={item.title}>
-                      {item.hasSubmenu ? (
-                        <button
-                          class={cn(
-                            "block w-full text-left text-gray-700 dark:text-gray-200 hover:text-primary-600 p-2 px-3 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium transition-all duration-200 flex items-center justify-between",
-                            location.url.pathname.startsWith("/services/") && "bg-gray-100  text-primary-600"
-                          )}
-                          onClick$={() => (isServicesSection.value = true)}
-                        >
-                          <span>{item.title}</span>
-                          <LuChevronRight class="h-5 w-5 text-gray-500 group-hover:text-primary-600" />
-                        </button>
-                      ) : (
+                  
                         <a
                           href={item.href}
                           class={cn(
@@ -126,7 +119,7 @@ KasLords Of The BlockDag            </Modal.Description>
                           {item.title}
                           {item.badge}
                         </a>
-                      )}
+                      
                     </li>
                   ))}
                  

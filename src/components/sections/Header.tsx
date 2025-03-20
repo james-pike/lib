@@ -109,8 +109,8 @@ export default component$(() => {
               {/* <a class="p-0 rounded-sm bg-yellow-50 dark:bg-gray-800 dark:border-gray-700 flex items-center h-full border border-yellow-200">
                 <ToggleTheme iconClass="w-6 h-6" />
               </a> */}
-              <a href="/" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
-                Get A Quote
+              <a href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
+                Mint KasLords
               </a>
               <MenuModal />
             </div>

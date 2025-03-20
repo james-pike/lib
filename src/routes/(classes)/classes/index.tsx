@@ -1,16 +1,22 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import Reviews from "~/components/sections/Reviews";
+import Classes from "~/components/sections/Classes";
+
+
+
+
+
 import { SITE } from "~/config.mjs";
 
 
 export default component$(() => {
   return (
     <>
-<Reviews title="What Our Guests Say"
-        subtitle="See what our customers love about our café!"
-        highlight="Reviews"/>
-
+     <Classes
+        title="Character Types"
+        subtitle="Wizard, Elf, Orc, Man, Dragon, and Dark Lord."
+        highlight="Classes"
+      />
     </>
   );
 });

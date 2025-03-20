@@ -1,8 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import About from "~/components/sections/About";
 import Contact from "~/components/sections/Contact";
 import FAQ from "~/components/sections/FAQ";
-import Items from "~/components/sections/Items";
 import Process from "~/components/sections/Process";
 import Services from "~/components/sections/Services";
 import { Card } from "~/components/ui/Card";
@@ -27,10 +27,10 @@ export default component$(() => {
             </HeroHeadline>
             <div class=" sm:max-w-md  grid grid-cols-1 pt-4 gap-3 sm:grid-cols-2 lg:grid-cols-2 lg:max-w-7xl">
 
-              <a class="btn2" href="/contact">Mint KasLords
+              <a class="btn2" href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank">Mint KasLords
 
               </a>
-              <a class="btn2" href="/contact">Join Community
+              <a class="btn2" href="https://t.me/+jETQ93SFFyI2YTk5" target="_blank">Join Community
 
               </a>
             </div>
@@ -39,16 +39,23 @@ export default component$(() => {
 
 
 
-
         <Services title="Character Classes"
-          subtitle="The seven unique Kaslord character types."
+          subtitle="Six unique Kaslord character types."
           highlight="Classes"
         />
 
-<Items title="Item Rarity Guide"
+          <About  
+                  title="About Kaslords"
+                  // subtitle="Have questions about our café? Find answers to common inquiries below."
+                  highlight="Story"
+                  subtitle="Story of the six Kaslords. Text could be LOTR style "
+        
+                   />
+
+{/* <Items title="Item Rarity Guide"
           subtitle="Browse inventory items and rarities."
           highlight="Items"
-        />
+        /> */}
 
 
     

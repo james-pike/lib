@@ -1,22 +1,20 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import Services1 from "~/components/sections/Services1";
+import Process from "~/components/sections/Process";
+
+
+
 
 import { SITE } from "~/config.mjs";
+
 
 export default component$(() => {
   return (
     <>
- <Services1  
-      title="What We Do"
-      subtitle="Now Serving Preston, Wellington & Almonte"
-      highlight="Services"
-      items={[]}
-      classes={{
-        
-    
-      }}
-      />
+    <Process title="KasLords Roadmap"
+              subtitle="Follow the journey ahead."
+              highlight="Roadmap"
+            />
     </>
   );
 });

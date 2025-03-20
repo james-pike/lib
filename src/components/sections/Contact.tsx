@@ -15,6 +15,7 @@ export default component$((props: Props) => {
     return (
         <section class=" scroll-mt-16">
             <Card.Root>
+            <Card.Image src='/images/roadmap.jpg' class="h-20"/>
                     <Card.Header class="relative">
                         <div class="absolute inset-y-0 right-[1%] items-center flex opacity-20 z-10 text-gray-500">
                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 animate-[spin_1.5s_ease-in-out]">

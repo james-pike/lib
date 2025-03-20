@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import { Card } from "../ui/Card";
 import { CardHeadline } from "../ui/CardHeadline";
 import IconStar from '../icons/IconStar';
-// import { Image } from "@unpic/qwik";
+import { Image } from "@unpic/qwik";
 
 
 interface Props {
@@ -100,19 +100,20 @@ export default component$((props: Props) => {
             </div>
           ))}
         </div>   
-           {/* {typeof image !== "undefined" && (
+           {typeof Image !== "undefined" && (
+            
                   <div class="md:hidden order-3">
                     <Image
                       layout="constrained"
-                       src="/images/hero1.webp"
+                       src="/images/wizard.jpg"
                       width={532}
                       height={504}
-                      alt={image.alt}
-                      class="w-full rounded-md bg-gray-500 object-cover object-top shadow-lg dark:bg-slate-700 sm:h-[400px]"
+                      
+                      class="w-full rounded-md bg-gray-500 object-cover mt-10 object-top shadow-lg dark:bg-slate-700 sm:h-[400px]"
                       breakpoints={[320, 480, 640, 768, 1024]}
                     />
                   </div>
-                )} */}
+                )}
                                  </Card.Content>
             </Card.Root>
         </section>

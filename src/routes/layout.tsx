@@ -8,7 +8,7 @@ import Header from "~/components/sections/Header";
 export default component$(() => {
 
   useVisibleTask$(() => {
-    inject(); // Runs only on client side
+    inject(); // Runs only on clsients side
   });
 
 

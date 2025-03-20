@@ -1,7 +1,8 @@
 import { component$ } from '@builder.io/qwik';
 import { Card } from "../ui/Card";
 import { CardHeadline } from "../ui/CardHeadline";
-import ServicesCarousel from '../widgets/ServicesCarousel';
+import { Image } from "@unpic/qwik";
+
 
 interface Props {
     title?: any;
@@ -16,7 +17,7 @@ export default component$((props: Props) => {
     return (
         <section class="scroll-mt-16">
             <Card.Root>
-                <Card.Image src='/images/hero1.webp' class="h-20"/>
+                <Card.Image src='/images/roadmap.jpg' class="h-20"/>
 
     
                     <Card.Header class="relative">
@@ -32,7 +33,24 @@ export default component$((props: Props) => {
                         <CardHeadline title={title} subtitle={subtitle} highlight={highlight} classes={classes?.headline} align="left" />
                     </Card.Header>
                     <Card.Content>
-                        <ServicesCarousel />
+                        <p>In the realm of Ethereandor, where the blockchain skies shimmered with infinite possibility, there existed a legendary council known as the Six Kaslords. Inspired by the ancient tales of Middle-earth, these digital deities were born from a visionary NFT project, each token imbued with unique powers and lore. Forged by the enigmatic creators at xAI, the Kaslords were not mere collectibles but guardians of a decentralized kingdom, their essence etched into the immutable ledger of the blockchain.
+</p> <br></br> <p>
+The first among them was Kaslord Arathor, the Ring-Bearer, whose NFT glimmered with the light of a thousand transactions. His power lay in uniting the scattered tribes of Ethereandor, much like the One Ring bound the fates of old. Beside him stood Kaslord Galethra, the Elven Mintress, her token adorned with fractal leaves that whispered secrets of infinite scalability. She wove the threads of smart contracts into tapestries of peace, her beauty rivaling that of Arwen herself. Then there was Kaslord Durak, the Dwarven Hash-King, a stout figure whose NFT pulsed with the rhythm of cryptographic forges, mining wealth from the depths of the digital earth.
+
+</p>
+ {typeof Image !== "undefined" && (
+                  <div class="md:hidden order-3">
+                    <Image
+                      layout="constrained"
+                       src="/images/wizard.jpg"
+                      width={532}
+                      height={504}
+                      
+                      class="w-full rounded-md bg-gray-500 object-cover mt-10 object-top shadow-lg dark:bg-slate-700 sm:h-[400px]"
+                      breakpoints={[320, 480, 640, 768, 1024]}
+                    />
+                  </div>
+                )}
                     </Card.Content>
             </Card.Root>
         </section>

@@ -3,16 +3,16 @@ import { Link } from "@builder.io/qwik-city"; // Import Link component
 
 const services = [
   {
-    title: "Exhibit Photography",
+    title: "Wizard",
     description: "Professional photography services tailored for exhibitions and galleries.",
     details: "Showcase your artwork or exhibits with high-quality, detailed photography.",
-    image: "/images/hero1.webp",
+    image: "/images/wizard.jpg",
     alt: "Exhibit Photography",
     delay: 0,
     slug: "exhibit-photography" // Added unique slug for routing
   },
   {
-    title: "Reproduction Services",
+    title: "Elf",
     description: "Accurate reproductions for prints, publications, and digital archives.",
     details: "Ensure every detail is captured for stunning, true-to-life reproductions.",
     image: "/images/hero1.webp",
@@ -21,7 +21,7 @@ const services = [
     slug: "reproduction-services"
   },
   {
-    title: "Fine Art Photography",
+    title: "Orc",
     description: "Capture the essence of fine art with our specialized photography services.",
     details: "Highlight textures, colors, and emotions in your artwork.",
     image: "/images/hero1.webp",
@@ -30,7 +30,7 @@ const services = [
     slug: "fine-art-photography"
   },
   {
-    title: "Digitization Services",
+    title: "Warrior",
     description: "Preserve and digitize your valuable artwork or photographs.",
     details: "Convert physical assets into high-quality digital formats.",
     image: "/images/hero1.webp",
@@ -39,7 +39,7 @@ const services = [
     slug: "digitization-services"
   },
   {
-    title: "Mobile Photography",
+    title: "Dragon",
     description: "Professional photography using mobile devices for quick turnarounds.",
     details: "Creative and fast solutions for on-the-go photography needs.",
     image: "/images/hero1.webp",
@@ -48,7 +48,7 @@ const services = [
     slug: "mobile-photography"
   },
   {
-    title: "Event Photography",
+    title: "Dark Lord",
     description: "Capture unforgettable moments with our event photography expertise.",
     details: "Ensure every memory is preserved with beautiful, candid shots.",
     image: "/images/hero1.webp",
