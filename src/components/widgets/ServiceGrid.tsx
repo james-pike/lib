@@ -65,7 +65,7 @@ export default component$(() => {
         <Link
           href={`/classes/${slug}`} // Creates URL like "/services/exhibit-photography"
           key={index}
-          class="group relative overflow-hidden rounded-lg shadow-md motion-preset-slide-up no-underline"
+          class="group relative overflow-hidden rounded-none shadow-md motion-preset-slide-up no-underline"
           
         >
           <div class="relative aspect-[2/1]">

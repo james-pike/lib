@@ -93,7 +93,7 @@ export default component$(() => {
             alt={service.value.alt}
             width={500}
             height={300}
-            class="w-full max-w-md rounded-lg shadow-md object-cover"
+            class="w-full max-w-md rounded-none shadow-md object-cover"
           />
         </div>
 
