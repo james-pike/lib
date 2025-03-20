@@ -44,7 +44,7 @@ const categories: Category[] = [
                     </svg>
                 ),
                 metadata: {
-                    weight: "0.1 kg",
+                    weight: "5%",
                     durability: "Medium",
                     rarity: "Rare"
                 }
@@ -56,6 +56,20 @@ const categories: Category[] = [
         name: "Neck",
         items: [
             {
+                title: "Helmet",
+                description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
+                icon: (
+                    <svg class="w-full h-full" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                ),
+                metadata: {
+                    weight: "20%",
+                    durability: "High",
+                    rarity: "Common"
+                }
+            },
+            {
                 title: "Necklace",
                 description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
                 icon: (
@@ -64,7 +78,7 @@ const categories: Category[] = [
                     </svg>
                 ),
                 metadata: {
-                    weight: "0.1 kg",
+                    weight: "5%",
                     durability: "Medium",
                     rarity: "Rare"
                 }
@@ -76,17 +90,31 @@ const categories: Category[] = [
         name: "Eyes",
         items: [
             {
-                title: "Goggles",
+                title: "Helmet",
                 description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
                 icon: (
                     <svg class="w-full h-full" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z"/>
+                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
                     </svg>
                 ),
                 metadata: {
-                    weight: "0.3 kg",
-                    durability: "Low",
-                    rarity: "Uncommon"
+                    weight: "20%",
+                    durability: "High",
+                    rarity: "Common"
+                }
+            },
+            {
+                title: "Necklace",
+                description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
+                icon: (
+                    <svg class="w-full h-full" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/>
+                    </svg>
+                ),
+                metadata: {
+                    weight: "5%",
+                    durability: "Medium",
+                    rarity: "Rare"
                 }
             },
             // Add more eyes items here
@@ -139,7 +167,7 @@ export default component$(() => {
         <section class="scroll-mt-16">
             <div class="max-w-5xl mx-auto">
                 {/* Showcase Area */}
-                <div class=" rounded-xl p-2 shadow-md mb-0">
+                <div class="rounded-xl p-2 shadow-md mb-0">
                     <div class="flex flex-col md:flex-row items-center gap-6">
                         {/* Larger Revolving Item Image */}
                         <div class="rotating-item flex-shrink-0 md:w-2/3 max-w-[150px] max-h-[150px]">
@@ -157,7 +185,15 @@ export default component$(() => {
                                 )}
                                 {currentItem.metadata.rarity && (
                                     <div>
-                                        <span class="font-semibold">Rarity:</span> <span class="text-green-500">{currentItem.metadata.rarity}</span>
+                                        <span class="font-semibold">Rarity:</span>{' '}
+                                        <span
+                                            class={twMerge(
+                                                currentItem.metadata.rarity === "Common" && "text-green-500",
+                                                currentItem.metadata.rarity === "Rare" && "text-orange-500"
+                                            )}
+                                        >
+                                            {currentItem.metadata.rarity}
+                                        </span>
                                     </div>
                                 )}
                             </div>
