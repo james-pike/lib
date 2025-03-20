@@ -37,8 +37,8 @@ export default component$(() => {
             })();
           `}
         /> */}
-             <link rel="preload" href="/images/hero1.webp" as="image" />
-                <link rel="preload" href="/images/hero2.webp" as="image" />
+             <link rel="preload" href="/images/wizard.jpg" as="image" />
+                <link rel="preload" href="/images/roadmap.jpg" as="image" />
         
       </head>
       <body class="text-gray-900 max-w-7xl px-2 py-1 mx-auto bg-background dark:text-gray-300 tracking-tight antialiased">
