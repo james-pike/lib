@@ -37,7 +37,7 @@ const categories: Category[] = [
             },
             {
                 title: "Necklace",
-                description: "Enhances neck protection and style. Enhances neck protection and style.",
+                description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
                 icon: (
                     <svg class="w-full h-full" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/>
@@ -57,7 +57,7 @@ const categories: Category[] = [
         items: [
             {
                 title: "Necklace",
-                description: "Enhances neck protection and style. Enhances neck protection and style.",
+                description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
                 icon: (
                     <svg class="w-full h-full" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/>
@@ -77,7 +77,7 @@ const categories: Category[] = [
         items: [
             {
                 title: "Goggles",
-                description: "Shields eyes from debris and enhances vision. Enhances neck protection and style.",
+                description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
                 icon: (
                     <svg class="w-full h-full" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z"/>
