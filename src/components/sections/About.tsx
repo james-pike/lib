@@ -42,7 +42,7 @@ The first among them was Kaslord Arathor, the Ring-Bearer, whose NFT glimmered w
                   <div class="md:hidden order-3">
                     <Image
                       layout="constrained"
-                       src="/images/wizard.jpg"
+                       src="/images/wixard.png"
                       width={532}
                       height={504}
                       
