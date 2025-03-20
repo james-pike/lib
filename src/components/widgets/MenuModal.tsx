@@ -19,8 +19,8 @@ export default component$(() => {
     { title: "Story", href: "/story", badge: null },
     { title: "Roadmap", href: "/roadmap", badge: null },
     { title: "Classes", href: "/classes", badge: null },
-    { title: "Inventory Items", href: "/classes", badge: <Badge class="absolute -top-0.1 left-14.5 bg-primary-300 text-white text-xs px-1 py-0 rounded">New</Badge> },
-    { title: "Rarity Guide", href: "/classes", badge: null },
+    { title: "Inventory Items", href: "/inventory", badge: <Badge class="absolute -top-0.1 left-14.5 bg-primary-300 text-white text-xs px-1 py-0 rounded">New</Badge> },
+    { title: "Rarity Guide", href: "/rarity", badge: null },
   
     // { 
     //   title: "Services", 
