@@ -1,7 +1,6 @@
 import { $, component$, useSignal } from '@builder.io/qwik';
 import { Card } from "../ui/Card";
 import { CardHeadline } from "../ui/CardHeadline";
-import { Accordion } from '../ui/Accordion';
 import ServiceGrid from '../widgets/ServiceGrid';
 
 interface Props {
