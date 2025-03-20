@@ -43,7 +43,7 @@ export default component$(() => {
     // },
     // { title: "Technology", href: "/", badge: null },
     { title: "FAQ", href: "/faq/", badge: null },
-    { title: "Contact", href: "/contact/", badge: null }
+ 
   ];
 
   // Get services subitems safely

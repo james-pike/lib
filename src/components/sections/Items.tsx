@@ -1,12 +1,105 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
-import { Card } from "../ui/Card";
-import { CardHeadline } from "../ui/CardHeadline";
-import { Tabs } from '../ui/Tabs';
+import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
+import { twMerge } from "tailwind-merge";
 
-import LogoClouds from './LogoClouds';
+interface Item {
+    title: string;
+    description: string;
+    icon: any;
+    metadata: {
+        weight?: string;
+        durability?: string;
+        rarity?: string;
+    };
+}
 
+interface Category {
+    name: string;
+    items: Item[];
+}
 
-import { useStyles$ } from "@builder.io/qwik";
+const categories: Category[] = [
+    {
+        name: "Head",
+        items: [
+            {
+                title: "Helmet",
+                description: "Protects the head from impacts and projectiles. Enhances neck protection and style.",
+                icon: (
+                    <svg class="w-full h-full" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                ),
+                metadata: {
+                    weight: "20%",
+                    durability: "High",
+                    rarity: "Common"
+                }
+            },
+            {
+                title: "Necklace",
+                description: "Enhances neck protection and style. Enhances neck protection and style.",
+                icon: (
+                    <svg class="w-full h-full" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/>
+                    </svg>
+                ),
+                metadata: {
+                    weight: "0.1 kg",
+                    durability: "Medium",
+                    rarity: "Rare"
+                }
+            },
+            // Add more head items here
+        ]
+    },
+    {
+        name: "Neck",
+        items: [
+            {
+                title: "Necklace",
+                description: "Enhances neck protection and style. Enhances neck protection and style.",
+                icon: (
+                    <svg class="w-full h-full" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/>
+                    </svg>
+                ),
+                metadata: {
+                    weight: "0.1 kg",
+                    durability: "Medium",
+                    rarity: "Rare"
+                }
+            },
+            // Add more neck items here
+        ]
+    },
+    {
+        name: "Eyes",
+        items: [
+            {
+                title: "Goggles",
+                description: "Shields eyes from debris and enhances vision. Enhances neck protection and style.",
+                icon: (
+                    <svg class="w-full h-full" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z"/>
+                    </svg>
+                ),
+                metadata: {
+                    weight: "0.3 kg",
+                    durability: "Low",
+                    rarity: "Uncommon"
+                }
+            },
+            // Add more eyes items here
+        ]
+    }
+];
+
+interface Props {
+    title?: any;
+    subtitle?: any;
+    highlight?: any;
+    classes?: any;
+}
 
 const styles = `
     @keyframes breathe {
@@ -20,96 +113,109 @@ const styles = `
     .breathing-glow {
         animation: breathe 2s ease-in-out infinite;
     }
+    @keyframes rotate3d {
+        0% {
+            transform: rotateY(0deg);
+        }
+        100% {
+            transform: rotateY(360deg);
+        }
+    }
+    .rotating-item {
+        animation: rotate3d 6s linear infinite;
+        transform-style: preserve-3d;
+    }
 `;
 
-
-
-
-
-
-
-
-interface Props {
-    title?: any;
-    subtitle?: any;
-    highlight?: any;
-    classes?: any;
-}
-
-
-
 export default component$((props: Props) => {
-    const { title = "", subtitle = "", highlight = "", classes = {} } = props;
+    const selectedCategory = useSignal(0);
+    const selectedItem = useSignal(0);
 
-      const selectedIndex = useSignal(0); 
-      
-          useStyles$(styles);
+    useStyles$(styles);
 
-    
-      useVisibleTask$(({ track }) => {
-        track(() => selectedIndex.value); // Watch for tab changes
-    
-      });
+    useVisibleTask$(({ track }) => {
+        track(() => selectedCategory.value);
+        selectedItem.value = 0; // Reset item selection when category changes
+    });
+
+    const currentItem = categories[selectedCategory.value].items[selectedItem.value];
 
     return (
-        <section class=" scroll-mt-16">
-            <Card.Root>
-                    <Card.Header class="relative">
-                        <div class="absolute inset-y-0 right-[1%] items-center flex opacity-20 z-10 text-gray-500">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 animate-[spin_1.5s_ease-in-out]">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7848 0.449982C13.8239 0.449982 14.7167 1.16546 14.9122 2.15495L14.9991 2.59495C15.3408 4.32442 17.1859 5.35722 18.9016 4.7794L19.3383 4.63233C20.3199 4.30175 21.4054 4.69358 21.9249 5.56605L22.7097 6.88386C23.2293 7.75636 23.0365 8.86366 22.2504 9.52253L21.9008 9.81555C20.5267 10.9672 20.5267 13.0328 21.9008 14.1844L22.2504 14.4774C23.0365 15.1363 23.2293 16.2436 22.7097 17.1161L21.925 18.4339C21.4054 19.3064 20.3199 19.6982 19.3382 19.3676L18.9017 19.2205C17.1859 18.6426 15.3408 19.6754 14.9991 21.405L14.9122 21.845C14.7167 22.8345 13.8239 23.55 12.7848 23.55H11.2152C10.1761 23.55 9.28331 22.8345 9.08781 21.8451L9.00082 21.4048C8.65909 19.6754 6.81395 18.6426 5.09822 19.2205L4.66179 19.3675C3.68016 19.6982 2.59465 19.3063 2.07505 18.4338L1.2903 17.1161C0.770719 16.2436 0.963446 15.1363 1.74956 14.4774L2.09922 14.1844C3.47324 13.0327 3.47324 10.9672 2.09922 9.8156L1.74956 9.52254C0.963446 8.86366 0.77072 7.75638 1.2903 6.8839L2.07508 5.56608C2.59466 4.69359 3.68014 4.30176 4.66176 4.63236L5.09831 4.77939C6.81401 5.35722 8.65909 4.32449 9.00082 2.59506L9.0878 2.15487C9.28331 1.16542 10.176 0.449982 11.2152 0.449982H12.7848ZM12 15.3C13.8225 15.3 15.3 13.8225 15.3 12C15.3 10.1774 13.8225 8.69998 12 8.69998C10.1774 8.69998 8.69997 10.1774 8.69997 12C8.69997 13.8225 10.1774 15.3 12 15.3Z"></path>
-                                </g>
-                            </svg>
+        <section class="scroll-mt-16">
+            <div class="max-w-5xl mx-auto">
+                {/* Showcase Area */}
+                <div class=" rounded-xl p-4 shadow-md mb-0">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        {/* Larger Revolving Item Image */}
+                        <div class="rotating-item flex-shrink-0 md:w-2/3 max-w-[200px] max-h-[200px]">
+                            {currentItem.icon}
                         </div>
-                        <CardHeadline title={title} subtitle={subtitle} highlight={highlight} classes={classes?.headline} align="left" />
-                    </Card.Header>
-                   
-                   
-                    <Card.Content>
-                    <Tabs.Root 
-  selectedClassName='bg-white' 
-  class="max-w-5xl mx-auto flex flex-col" 
-  selectedIndex={selectedIndex.value} 
-  onSelectedIndexChange$={(index) => (selectedIndex.value = index)}
->
-  {/* Responsive Tabs List with order-last */}
-  <Tabs.List class="grid grid-cols-4 sm:justify-start sm:inline-flex sm:space-x-4 w-full shadow-md order-last">
-    <Tabs.Tab class="px-4 py-2">Weapon</Tabs.Tab>
-    <Tabs.Tab class="px-4 py-2">Helmet</Tabs.Tab>
-    <Tabs.Tab class="px-4 py-2">Face</Tabs.Tab>
-    <Tabs.Tab class="px-4 py-2">Background</Tabs.Tab>
-  </Tabs.List>
+                        {/* Smaller Title, Description, and Metadata */}
+                        <div class="flex-1 md:w-1/3">
+                            <h3 class="text-xl font-bold mb-1">{currentItem.title}</h3>
+                            <p class="text-sm text-gray-400 mb-2">{currentItem.description}</p>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-400">
+                                {currentItem.metadata.weight && (
+                                    <div>
+                                        <span class="font-semibold">Drop rate:</span> {currentItem.metadata.weight}
+                                    </div>
+                                )}
+                                {currentItem.metadata.rarity && (
+                                    <div>
+                                        <span class="font-semibold">Rarity:</span> <span class="text-green-500">{currentItem.metadata.rarity}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  {/* Tea Panel */}
-  <Tabs.Panel>
-    <LogoClouds/>
-  </Tabs.Panel>
+                {/* Custom Category Tabs */}
+                <div class="grid grid-cols-3 sm:flex sm:space-x-4 w-full shadow-md p-2 rounded-lg mb-8">
+                    {categories.map((category, index) => (
+                        <button
+                            key={index}
+                            class={twMerge(
+                                "p-2 bg-transparent",
+                                selectedCategory.value === index && "border-b-2 border-blue-500"
+                            )}
+                            onClick$={() => selectedCategory.value = index}
+                        >
+                            {category.name}
+                        </button>
+                    ))}
+                </div>
 
-  <Tabs.Panel>
-
-  </Tabs.Panel>
-
-  {/* Bistro Panel */}
-  <Tabs.Panel>
-   
-  </Tabs.Panel>
-
-  {/* Dessert Panel */}
-  <Tabs.Panel>
-  
-  </Tabs.Panel>
-</Tabs.Root>
-                    </Card.Content>
-            </Card.Root>
+                {/* Items Grid */}
+                <div class="grid grid-cols-3 lg:grid-cols-4 gap-0.5 md:gap-4 xl:gap-8 md:mb-8">
+                    {categories[selectedCategory.value].items.map((item, index) => (
+                        <div
+                            key={index}
+                            class="relative p-1 cursor-pointer group"
+                            onClick$={() => selectedItem.value = index}
+                        >
+                            <div class="relative flex items-center justify-center">
+                                <div
+                                    class={twMerge(
+                                        "absolute inset-[-2px] rounded-none transition-all duration-300 bg-blue-100/50 dark:bg-blue-900/50 border border-gray-300 dark:border-gray-700",
+                                        selectedItem.value === index && "bg-blue-300/70 dark:bg-blue-800/70 breathing-glow",
+                                        "group-hover:bg-blue-200/70 dark:group-hover:bg-blue-800/70 group-hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.4)]"
+                                    )}
+                                />
+                                <div
+                                    class={twMerge(
+                                        "relative bg-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800 w-full p-2 transition-transform duration-300",
+                                        selectedItem.value === index && "scale-105",
+                                        "group-hover:scale-105"
+                                    )}
+                                >
+                                    {item.icon}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </section>
     );
 });
-
-
-
-
-
-

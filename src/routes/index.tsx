@@ -1,14 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import About from "~/components/sections/About";
-import Contact from "~/components/sections/Contact";
 import FAQ from "~/components/sections/FAQ";
+import Inventory from "~/components/sections/Inventory";
 import Process from "~/components/sections/Process";
 import Services from "~/components/sections/Services";
 import { Card } from "~/components/ui/Card";
 import { HeroHeadline } from "~/components/ui/HeroHeadline";
 import { SITE } from "~/config.mjs";
-
 
 
 export default component$(() => {
@@ -37,11 +36,14 @@ export default component$(() => {
           </div>
 </Card.Root>
 
-
-
         <Services title="Character Classes"
           subtitle="Six unique Kaslord character types."
           highlight="Classes"
+        />
+
+<Inventory title="Inventory Items"
+        subtitle="Browse inventory items and rarity."
+        highlight="Inventory"
         />
 
           <About  
@@ -73,10 +75,7 @@ export default component$(() => {
         />
 
 
-        <Contact title="Request A Quote"
-          subtitle="Get in touch for a consultation."
-          highlight="Contact Us"
-        />
+       
 
 
       </div>
