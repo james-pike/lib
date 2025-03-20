@@ -94,12 +94,7 @@ const categories: Category[] = [
     }
 ];
 
-interface Props {
-    title?: any;
-    subtitle?: any;
-    highlight?: any;
-    classes?: any;
-}
+
 
 const styles = `
     @keyframes breathe {
@@ -127,7 +122,7 @@ const styles = `
     }
 `;
 
-export default component$((props: Props) => {
+export default component$(() => {
     const selectedCategory = useSignal(0);
     const selectedItem = useSignal(0);
 
