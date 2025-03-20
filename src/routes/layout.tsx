@@ -14,7 +14,7 @@ export default component$(() => {
 
   return (
     <>
-<div class="block sm:hidden">
+<div class="">
       <Header />
       <main>
         <Slot />
