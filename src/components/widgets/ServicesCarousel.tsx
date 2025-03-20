@@ -58,7 +58,7 @@ export default component$(() => {
               <img
                 src={service.image}
                 alt={service.title}
-                class="w-full h-60 object-cover rounded-none"
+                class="w-full h-50 object-cover rounded-none"
               />
               <div class="service-info p-2 bg-gray-200 dark:bg-gray-800 flex-1 overflow-hidden">
                 <h1 class="service-title text-lg font-bold truncate">{service.title}</h1>
