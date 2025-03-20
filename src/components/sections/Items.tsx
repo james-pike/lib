@@ -139,7 +139,7 @@ export default component$(() => {
         <section class="scroll-mt-16">
             <div class="max-w-5xl mx-auto">
                 {/* Showcase Area */}
-                <div class=" rounded-xl p-0 shadow-md mb-0">
+                <div class=" rounded-xl p-2 shadow-md mb-0">
                     <div class="flex flex-col md:flex-row items-center gap-6">
                         {/* Larger Revolving Item Image */}
                         <div class="rotating-item flex-shrink-0 md:w-2/3 max-w-[150px] max-h-[150px]">
