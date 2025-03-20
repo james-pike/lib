@@ -17,8 +17,9 @@ export default component$(() => {
     {/* <Hero/> */}
       <div class="flex flex-col gap-3">
 
-<Card.Root class="py-8 px-4">
+<Card.Root class="py-4 px-4">
 <div class="flex flex-col">
+<video src="/images/hero2.mp4" autoplay loop muted playsInline class="w-full h-auto pb-6" />
             <HeroHeadline title="KasLords of the BlockDag"
               subtitle="Transform your online presence with our custom web design and development services."
               classes={{

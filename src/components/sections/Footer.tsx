@@ -74,7 +74,7 @@ export default component$(() => {
     
 <Card.Root class="bg-yellow-50 border-yellow-100 border-2">
   
-        <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto px-2 py-4">
           {/* Top Secti <footer class=" border-gray-200 bg-yellow-50 border dark:border-gray-700 rounded-none py-10 px-4 sm:px-6">on */}
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
             {/* Brand Column */}
