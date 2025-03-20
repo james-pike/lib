@@ -1,4 +1,4 @@
-import { $, component$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal } from '@builder.io/qwik';
 import { Card } from "../ui/Card";
 import { CardHeadline } from "../ui/CardHeadline";
 import ServiceGrid from '../widgets/ServiceGrid';
@@ -15,9 +15,6 @@ export default component$((props: Props) => {
     const rotateTrigger = useSignal(0);
 
     // Function to handle accordion click and trigger 90-degree rotation
-    const handleAccordionClick = $(() => {
-        rotateTrigger.value += 1; // Increment to trigger new animation
-    });
 
     return (
         <section class="scroll-mt-16">
