@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$, StaticGenerateHandler } from "@builder.io/qwik-city";
+import { Card } from "~/components/ui/Card";
 
 interface Service {
   title: string;
@@ -84,8 +85,9 @@ export default component$(() => {
   }
 
   return (
-    <section class="max-w-screen-xl mx-auto px-4 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <section class="max-w-screen-xl mx-auto md:py-16">
+      <Card.Root>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
         {/* Image Section */}
         <div class="flex justify-center md:justify-start">
           <img
@@ -93,12 +95,12 @@ export default component$(() => {
             alt={service.value.alt}
             width={500}
             height={300}
-            class="w-full max-w-md rounded-none shadow-md object-cover"
+            class="w-full  rounded-none shadow-md object-cover"
           />
         </div>
 
         {/* Text Section */}
-        <div class="space-y-6 pb-8">
+        <div class="space-y-4 px-1 pb-8">
           <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             {service.value.title}
           </h1>
@@ -112,6 +114,7 @@ export default component$(() => {
       
         </div>
       </div>
+      </Card.Root>
     </section>
   );
 });
