@@ -1,4 +1,4 @@
-import {  component$, useSignal, useStore } from "@builder.io/qwik";
+import {  $, component$, useSignal, useStore } from "@builder.io/qwik";
 import { useContent, useLocation } from "@builder.io/qwik-city";
 import IconChevronDown from "../icons/IconChevronDown";
 import { Logo } from "../common/Logo";
@@ -9,11 +9,20 @@ import { Modal } from '../ui/Modal';
 import { Button, buttonVariants } from '../ui/Button';
 import { Label } from '../ui/Label';
 import { Input } from '../ui/Input';
+import IconGithub from "../icons/IconGithub";
 
 export default component$(() => {
   const store = useStore({
     isScrolling: false,
     isMenuExpanded: false,
+  });
+
+  const audioRef = useSignal<HTMLAudioElement>();
+
+  const playAudio = $(() => {
+    if (audioRef.value) {
+      audioRef.value.play();
+    }
   });
 
   // const isBannerVisible = useSignal(() => {
@@ -106,9 +115,20 @@ export default component$(() => {
               <Logo />
             </a>
             <div class="flex items-center md:hidden gap-0.5">
-              {/* <a class="p-0 rounded-sm bg-yellow-50 dark:bg-gray-800 dark:border-gray-700 flex items-center h-full border border-yellow-200">
-                <ToggleTheme iconClass="w-6 h-6" />
-              </a> */}
+          <button
+                type="button"
+               class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700"
+                aria-label="Toggle between Dark and Light mode"
+                onClick$={playAudio}
+               
+              >
+              
+                  <IconGithub  />
+              
+               
+              </button>
+              <audio ref={audioRef} src="/public/images/audio.mp3" />
+
               <a href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
                 Mint KasLords
               </a>
