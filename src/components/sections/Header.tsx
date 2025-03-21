@@ -9,7 +9,9 @@ import { Modal } from '../ui/Modal';
 import { Button, buttonVariants } from '../ui/Button';
 import { Label } from '../ui/Label';
 import { Input } from '../ui/Input';
-import IconGithub from "../icons/IconGithub";
+import IconPlay from "../icons/IconPlay";
+import IconPause from "../icons/IconPause";
+
 
 
   
@@ -19,28 +21,32 @@ import IconGithub from "../icons/IconGithub";
       isMenuExpanded: false,
     });
   
-    // Signal to track the audio element reference
     const audioRef = useSignal<HTMLAudioElement>();
-    // Signal to track playing state (optional for your case, but useful for control)
     const isPlaying = useSignal(false);
   
-    // Play function based on mediaController docs
-    const playAudio = $(async () => {
+    // Toggle play/pause based on current state
+    const toggleAudio = $(async () => {
       const audio = audioRef.value;
       if (audio) {
-        try {
-          await audio.play();
-          isPlaying.value = true; // Update state when playing
-          console.log("Audio playing");
-        } catch (error) {
-          console.error("Failed to play audio:", error);
+        if (isPlaying.value) {
+          audio.pause();
+          isPlaying.value = false;
+          console.log("Audio paused");
+        } else {
+          try {
+            await audio.play();
+            isPlaying.value = true;
+            console.log("Audio playing");
+          } catch (error) {
+            console.error("Failed to play audio:", error);
+          }
         }
       } else {
         console.error("Audio element not available");
       }
     });
   
-    // Optional: Handle audio end or pause (from mediaController pattern)
+    // Reset isPlaying when audio ends
     const handleAudioEnded = $(() => {
       isPlaying.value = false;
     });
@@ -80,16 +86,16 @@ import IconGithub from "../icons/IconGithub";
                 <button
                   type="button"
                   class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700"
-                  aria-label="Toggle between Dark and Light mode"
-                  onClick$={playAudio}
+                  aria-label={isPlaying.value ? "Pause audio" : "Play audio"}
+                  onClick$={toggleAudio}
                 >
-                  <IconGithub />
+                  {isPlaying.value ? <IconPause /> : <IconPlay />}
                 </button>
                 <audio
                   ref={audioRef}
-                  src="/images/audio.mp3" // Adjusted for Qwik public dir
-                  preload="auto" // Ensure audio loads eagerly
-                  onEnded$={handleAudioEnded} // Reset state when audio ends
+                  src="/images/audio.mp3"
+                  preload="auto"
+                  onEnded$={handleAudioEnded}
                 />
               <a href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
                 Mint KasLords
