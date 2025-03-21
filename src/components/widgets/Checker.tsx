@@ -77,11 +77,7 @@ export default component$(() => {
           />
           <h2 class="text-xl font-semibold mb-2">{nftData.value.metadata.name}</h2>
           <p class="text-gray-600 mb-4">{nftData.value.metadata.description}</p>
-          <div class="grid grid-cols-2 gap-2 text-sm mb-4">
-            <div>
-              <span class="font-semibold">Token URI:</span> {nftData.value.tokenURI}
-            </div>
-          </div>
+        
           <h3 class="text-lg font-semibold mb-2">Attributes</h3>
           <ul class="list-disc pl-5 text-sm">
             {nftData.value.metadata.attributes?.map((attr: any, index: number) => (
