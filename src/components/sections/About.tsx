@@ -2,6 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import { Card } from "../ui/Card";
 import { CardHeadline } from "../ui/CardHeadline";
 import { Image } from "@unpic/qwik";
+import Checker from '../widgets/Checker';
 
 
 interface Props {
@@ -16,6 +17,7 @@ export default component$((props: Props) => {
 
     return (
         <section class="scroll-mt-16">
+            <Checker/>
             <Card.Root>
                 <Card.Image src='/images/roadmap.jpg' class="h-20"/>
 
