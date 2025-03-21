@@ -12,20 +12,11 @@ import IconPause from "../icons/IconPause";
 import { Label } from "../ui/Label";
 import { Input } from "../ui/Input";
 
-// Singleton audio instance (outside Qwik reactivity)
+// Global audio state (no Audio instantiation here)
 const globalAudio = {
   instance: null as HTMLAudioElement | null,
   isPlaying: false,
 };
-
-// Initialize audio only once
-if (!globalAudio.instance) {
-  globalAudio.instance = new Audio("/images/audio.mp3");
-  globalAudio.instance.preload = "auto";
-  globalAudio.instance.addEventListener("ended", () => {
-    globalAudio.isPlaying = false;
-  });
-}
 
 export default component$(() => {
   const store = useStore({
@@ -33,23 +24,32 @@ export default component$(() => {
     isMenuExpanded: false,
   });
 
-  // Local signal to sync with global state (optional for reactivity)
   const isPlaying = useSignal(globalAudio.isPlaying);
 
-  // Toggle play/pause
+  // Toggle play/pause with lazy initialization
   const toggleAudio = $(async () => {
+    // Lazily initialize audio only in the browser
+    if (!globalAudio.instance && typeof window !== "undefined") {
+      globalAudio.instance = new Audio("/images/audio.mp3");
+      globalAudio.instance.preload = "auto";
+      globalAudio.instance.addEventListener("ended", () => {
+        globalAudio.isPlaying = false;
+        isPlaying.value = false; // Sync with UI
+      });
+    }
+
     const audio = globalAudio.instance;
     if (audio) {
       if (globalAudio.isPlaying) {
         audio.pause();
         globalAudio.isPlaying = false;
-        isPlaying.value = false; // Sync local state
+        isPlaying.value = false;
         console.log("Audio paused");
       } else {
         try {
           await audio.play();
           globalAudio.isPlaying = true;
-          isPlaying.value = true; // Sync local state
+          isPlaying.value = true;
           console.log("Audio playing");
         } catch (error) {
           console.error("Failed to play audio:", error);
