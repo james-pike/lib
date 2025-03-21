@@ -9,7 +9,6 @@ export default component$(() => {
   return (
     <>
 <Inventory title="Inventory Items"
-        subtitle="Browse Inventory Items & Rarities."
         highlight="Inventory"
        
         
