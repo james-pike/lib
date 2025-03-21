@@ -2,11 +2,7 @@ import { component$, useSignal, useStyles$, $ } from '@builder.io/qwik';
 import jeetsMetadata from '~/data/jeetsMetadata.json';
 
 const styles = `
-  @keyframes rotate3d {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
-  }
-  .rotating-item { animation: rotate3d 6s linear infinite; transform-style: preserve-3d; }
+ 
 `;
 
 export default component$(() => {
@@ -25,9 +21,9 @@ export default component$(() => {
         throw new Error(`NFT with Edition ${nftSearchId.value} not found`);
       }
       const ipfsBase = 'bafybeif6ba2mj6utneenc6dob7jnvxc2oexplrwsxjwmxm3fgy7e36smqu';
-      const imageFile = nft.image.split('/').pop(); // Extracts "1.png", "2.png", etc.
+      const imageFile = nft.image.split('/').pop(); // "1.png", "4.png", etc.
       const tokenURI = `ipfs://${ipfsBase}/${imageFile}`;
-      const imageUrl = `https://cloudflare-ipfs.com/ipfs/${ipfsBase}/${imageFile}`; // Use Cloudflare gateway
+      const imageUrl = `https://gateway.pinata.cloud/ipfs/${ipfsBase}/${imageFile}`; // Use Pinata gateway
       
       console.log('Image URL:', imageUrl); // Debug log
       console.log('Token URI:', tokenURI); // Debug log
@@ -75,7 +71,7 @@ export default component$(() => {
             class="max-w-[150px] mb-4 mx-auto rotating-item"
             onError$={() => {
               console.log(`Failed to load image: ${nftData.value.metadata.image}`);
-              // Optionally set a fallback image
+              // Optional fallback
               // e.target.src = 'https://via.placeholder.com/150?text=Image+Not+Found';
             }}
           />
