@@ -1,104 +1,103 @@
-
-
-  
-    import { $, component$, useSignal, useStore } from "@builder.io/qwik";
-    import { useContent, useLocation } from "@builder.io/qwik-city";
-    import IconChevronDown from "../icons/IconChevronDown";
-    import { Logo } from "../common/Logo";
-    import MenuModal from "../widgets/MenuModal";
-    import { cn } from "@qwik-ui/utils";
-    import { LuX } from "@qwikest/icons/lucide";
-    import { Modal } from "../ui/Modal";
-    import { Button, buttonVariants } from "../ui/Button";
-    import IconPlay from "../icons/IconPlay";
-    import IconPause from "../icons/IconPause"; // Assuming this exists
+import { $, component$, useSignal, useStore } from "@builder.io/qwik";
+import { useContent, useLocation } from "@builder.io/qwik-city";
+import IconChevronDown from "../icons/IconChevronDown";
+import { Logo } from "../common/Logo";
+import MenuModal from "../widgets/MenuModal";
+import { cn } from "@qwik-ui/utils";
+import { LuX } from "@qwikest/icons/lucide";
+import { Modal } from "../ui/Modal";
+import { Button, buttonVariants } from "../ui/Button";
+import IconGithub from "../icons/IconPlay";
+import IconPause from "../icons/IconPause";
 import { Label } from "../ui/Label";
 import { Input } from "../ui/Input";
-    
-    // Global audio store (defined outside any component)
-    const audioStore = useStore<{
-      audio: HTMLAudioElement | null;
-      isPlaying: boolean;
-    }>({
-      audio: null,
-      isPlaying: false,
-    }, { deep: false }); // `deep: false` ensures reactivity only on direct property changes
-    
-    export default component$(() => {
-      const store = useStore({
-        isScrolling: false,
-        isMenuExpanded: false,
-      });
-    
-      // Initialize or reuse the global audio instance
-      if (!audioStore.audio) {
-        audioStore.audio = new Audio("/images/audio.mp3");
-        audioStore.audio.preload = "auto"; // Ensure it loads eagerly
-        audioStore.audio.addEventListener("ended", () => {
-          audioStore.isPlaying = false; // Reset when audio ends
-        });
-      }
-    
-      // Toggle play/pause
-      const toggleAudio = $(async () => {
-        const audio = audioStore.audio;
-        if (audio) {
-          if (audioStore.isPlaying) {
-            audio.pause();
-            audioStore.isPlaying = false;
-            console.log("Audio paused");
-          } else {
-            try {
-              await audio.play();
-              audioStore.isPlaying = true;
-              console.log("Audio playing");
-            } catch (error) {
-              console.error("Failed to play audio:", error);
-            }
-          }
+
+// Singleton audio instance (outside Qwik reactivity)
+const globalAudio = {
+  instance: null as HTMLAudioElement | null,
+  isPlaying: false,
+};
+
+// Initialize audio only once
+if (!globalAudio.instance) {
+  globalAudio.instance = new Audio("/images/audio.mp3");
+  globalAudio.instance.preload = "auto";
+  globalAudio.instance.addEventListener("ended", () => {
+    globalAudio.isPlaying = false;
+  });
+}
+
+export default component$(() => {
+  const store = useStore({
+    isScrolling: false,
+    isMenuExpanded: false,
+  });
+
+  // Local signal to sync with global state (optional for reactivity)
+  const isPlaying = useSignal(globalAudio.isPlaying);
+
+  // Toggle play/pause
+  const toggleAudio = $(async () => {
+    const audio = globalAudio.instance;
+    if (audio) {
+      if (globalAudio.isPlaying) {
+        audio.pause();
+        globalAudio.isPlaying = false;
+        isPlaying.value = false; // Sync local state
+        console.log("Audio paused");
+      } else {
+        try {
+          await audio.play();
+          globalAudio.isPlaying = true;
+          isPlaying.value = true; // Sync local state
+          console.log("Audio playing");
+        } catch (error) {
+          console.error("Failed to play audio:", error);
         }
-      });
-    
-      const show = useSignal(false);
-      const { menu } = useContent();
-      const location = useLocation();
-    
-      return (
-        <>
-          <header
-            id="header"
-            class={`sticky top-0 py-0.5 -mt-0.5 z-40 max-w-7xl bg-background flex-none mx-auto w-full border-gray-200 dark:border-gray-700 transition-[opacity] ease-in-out ${
-              store.isScrolling
-                ? "md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90 bg-background"
-                : ""
-            }`}
-            window:onScroll$={() => {
-              if (!store.isScrolling && window.scrollY >= 10) {
-                store.isScrolling = true;
-              } else if (store.isScrolling && window.scrollY < 10) {
-                store.isScrolling = false;
-              }
-            }}
-          >
-            <div class="absolute inset-0 pointer-events-none"></div>
-    
-            <div class="relative text-default md:px-6 mx-auto w-full md:flex md:justify-between max-w-7xl">
-              <div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
-                <a
-                  href="/"
-                  class="p-0 bg-gray-100 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700"
-                >
-                  <Logo />
-                </a>
-                <div class="flex items-center md:hidden gap-0.5">
-                  <button
-                    type="button"
-                    class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700"
-                    aria-label={audioStore.isPlaying ? "Pause audio" : "Play audio"}
-                    onClick$={toggleAudio}
-                  >
-                    {audioStore.isPlaying ? <IconPause /> : <IconPlay />}
-                  </button>
+      }
+    }
+  });
+
+  const show = useSignal(false);
+  const { menu } = useContent();
+  const location = useLocation();
+
+  return (
+    <>
+      <header
+        id="header"
+        class={`sticky top-0 py-0.5 -mt-0.5 z-40 max-w-7xl bg-background flex-none mx-auto w-full border-gray-200 dark:border-gray-700 transition-[opacity] ease-in-out ${
+          store.isScrolling
+            ? "md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90 bg-background"
+            : ""
+        }`}
+        window:onScroll$={() => {
+          if (!store.isScrolling && window.scrollY >= 10) {
+            store.isScrolling = true;
+          } else if (store.isScrolling && window.scrollY < 10) {
+            store.isScrolling = false;
+          }
+        }}
+      >
+        <div class="absolute inset-0 pointer-events-none"></div>
+
+        <div class="relative text-default md:px-6 mx-auto w-full md:flex md:justify-between max-w-7xl">
+          <div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
+            <a
+              href="/"
+              class="p-0 bg-gray-100 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700"
+            >
+              <Logo />
+            </a>
+            <div class="flex items-center md:hidden gap-0.5">
+              <button
+                type="button"
+                class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700"
+                aria-label={isPlaying.value ? "Pause audio" : "Play audio"}
+                onClick$={toggleAudio}
+              >
+                {isPlaying.value ? <IconPause /> : <IconGithub />}
+              </button>
               <a href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
                 Mint KasLords
               </a>
