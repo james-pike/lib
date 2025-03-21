@@ -1,4 +1,4 @@
-import {  $, component$, useSignal, useStore } from "@builder.io/qwik";
+import {  $, component$, useSignal, useStore, useTask$ } from "@builder.io/qwik";
 import { useContent, useLocation } from "@builder.io/qwik-city";
 import IconChevronDown from "../icons/IconChevronDown";
 import { Logo } from "../common/Logo";
@@ -18,47 +18,43 @@ export default component$(() => {
   });
 
   const audioRef = useSignal<HTMLAudioElement>();
+  const isAudioReady = useSignal(false); // Track audio readiness
 
-  const playAudio = $(async () => {
+  // Ensure audio element is ready after hydration
+  useTask$(() => {
     if (audioRef.value) {
-      try {
-        await audioRef.value.play(); // Use await to catch errors
-        console.log("Audio playing successfully");
-      } catch (error) {
-        console.error("Audio playback failed:", error);
-      }
-    } else {
-      console.error("Audio element not found");
+      audioRef.value.addEventListener("canplay", () => {
+        isAudioReady.value = true;
+      });
     }
   });
 
-  // const isBannerVisible = useSignal(() => {
-  //   if (typeof window !== 'undefined') {
-  //     return sessionStorage.getItem('bannerClosed') !== 'true';
-  //   }
-  //   return true;
-  // });
+  const playAudio = $(async () => {
+    if (audioRef.value && isAudioReady.value) {
+      try {
+        await audioRef.value.play();
+        console.log("Audio played successfully");
+      } catch (error) {
+        console.error("Failed to play audio:", error);
+      }
+    } else {
+      console.error("Audio not ready or ref missing");
+    }
+  });
 
-  const show = useSignal(false); // Shared state for the modal
-
+  const show = useSignal(false);
   const { menu } = useContent();
   const location = useLocation();
-
-  // const handleCloseBanner = $(() => {
-  //   isBannerVisible.value = false;
-  //   if (typeof window !== 'undefined') {
-  //     sessionStorage.setItem('bannerClosed', 'true');
-  //   }
-  // });
 
   return (
     <>
       <header
         id="header"
-        class={`sticky top-0 py-0.5 -mt-0.5 z-40 max-w-7xl bg-background flex-none mx-auto w-full border-gray-200 dark:border-gray-700 transition-[opacity] ease-in-out ${store.isScrolling
-          ? "md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90 bg-background"
-          : ""
-          }`}
+        class={`sticky top-0 py-0.5 -mt-0.5 z-40 max-w-7xl bg-background flex-none mx-auto w-full border-gray-200 dark:border-gray-700 transition-[opacity] ease-in-out ${
+          store.isScrolling
+            ? "md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90 bg-background"
+            : ""
+        }`}
         window:onScroll$={() => {
           if (!store.isScrolling && window.scrollY >= 10) {
             store.isScrolling = true;
@@ -69,30 +65,27 @@ export default component$(() => {
       >
         <div class="absolute inset-0 pointer-events-none"></div>
 
-    
-
         <div class="relative text-default md:px-6 mx-auto w-full md:flex md:justify-between max-w-7xl">
           <div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
-            <a href="/" class="p-0 bg-gray-100 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+            <a
+              href="/"
+              class="p-0 bg-gray-100 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700"
+            >
               <Logo />
             </a>
             <div class="flex items-center md:hidden gap-0.5">
-          <button
+              <button
                 type="button"
-               class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700"
+                class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700"
                 aria-label="Toggle between Dark and Light mode"
                 onClick$={playAudio}
-               
               >
-              
-                  <IconGithub  />
-              
-               
+                <IconGithub />
               </button>
               <audio
                 ref={audioRef}
-                src="/public/images/audio.mp3"
-                preload="auto" // Ensure audio is ready
+                src="/images/audio.mp3" // Adjusted path (no /public)
+                preload="auto" // Ensure audio loads eagerly
               />
               <a href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
                 Mint KasLords
