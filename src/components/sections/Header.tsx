@@ -19,9 +19,16 @@ export default component$(() => {
 
   const audioRef = useSignal<HTMLAudioElement>();
 
-  const playAudio = $(() => {
+  const playAudio = $(async () => {
     if (audioRef.value) {
-      audioRef.value.play();
+      try {
+        await audioRef.value.play(); // Use await to catch errors
+        console.log("Audio playing successfully");
+      } catch (error) {
+        console.error("Audio playback failed:", error);
+      }
+    } else {
+      console.error("Audio element not found");
     }
   });
 
@@ -62,52 +69,7 @@ export default component$(() => {
       >
         <div class="absolute inset-0 pointer-events-none"></div>
 
-        {/* {isBannerVisible.value && (
-  <div
-    class="btnx"
-    onClick$={() => (show.value = true)} // Trigger modal on banner click
-    role="button" // Improve accessibility
-    tabIndex={0} // Make it focusable
-    aria-label="Open profile editor"
-  >
-    <div class="w-full h-6 px-2 md:px-7 mx-auto flex justify-between items-center max-w-7xl relative">
-      <div>
-        <p>Free Website Audit & SEO Report.</p>
-      </div>
-      <div id="test" class="flex gap-4 sm:flex hidden sm:block">
-        <a
-          class="text-gray-50 px-3 dark:text-gray-400 hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm inline-flex items-center"
-          href="tel:+16132188063"
-          onClick$={(event) => event.stopPropagation()} // Prevent link from triggering modal
-        >
-          <IconTelegram />
-          <p class="pl-1">(613) 218-8063</p>
-        </a>
-        <p class="text-gray-50">|</p>
-        <a
-          class="text-gray-50 px-3 dark:text-gray-400 hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm inline-flex items-center"
-          href="mailto:info@webdev.ca"
-          onClick$={(event) => event.stopPropagation()} // Prevent link from triggering modal
-        >
-          <IconTwitter />
-          <p class="pl-1">info@webdev.ca</p>
-        </a>
-      </div>
-      <button
-        class="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 text-white hover:text-gray-200 focus:outline-none"
-        onClick$={(event) => {
-          event.stopPropagation(); // Prevent modal trigger
-          handleCloseBanner(); // Close banner
-        }}
-        aria-label="Close banner"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-  </div>
-)} */}
+    
 
         <div class="relative text-default md:px-6 mx-auto w-full md:flex md:justify-between max-w-7xl">
           <div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
@@ -127,8 +89,11 @@ export default component$(() => {
               
                
               </button>
-              <audio ref={audioRef} src="/public/images/audio.mp3" />
-
+              <audio
+                ref={audioRef}
+                src="/public/images/audio.mp3"
+                preload="auto" // Ensure audio is ready
+              />
               <a href="https://www.kaspa.com/nft/collections/TOXIK" target="_blank" class="p-2 bg-blue-50 rounded-sm flex items-center h-full dark:bg-gray-800 border-2 border-blue-200 dark:border-gray-700">
                 Mint KasLords
               </a>
