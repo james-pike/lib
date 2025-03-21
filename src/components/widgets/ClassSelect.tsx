@@ -9,7 +9,7 @@ export default component$(() => {
     <Select.Root>
       {/* <Select.Label>Logged in users</Select.Label> */}
       <Select.Trigger>
-        <Select.DisplayValue placeholder="Select an option" />
+        <Select.DisplayValue placeholder="Wizard" />
       </Select.Trigger>
       <Select.Popover gutter={8}>
         {users.map((user) => (
