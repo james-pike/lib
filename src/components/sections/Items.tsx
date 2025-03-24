@@ -167,7 +167,7 @@ const categories: Category[] = [
             },
             {
                 title: "Mystic Guardian Helm",
-                description: "A sturdy headpiece blending steel and sorcery, shielding wizards in battle while enhancing focus."
+                 description:  "A towering hat imbued with arcane runes, amplifying the wearer’s spellcasting prowess."
 
                 ,
                 icon: (<svg class="w-full h-full" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/></svg>),
