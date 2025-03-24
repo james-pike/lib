@@ -66,7 +66,7 @@ export default component$(({ selectedClass }: ItemsProps) => {
                 {filteredCategories.length > 0 ? (
                     <>
                         <div class="rounded-sm p-4 shadow-md mb-0 border-2 border-gray-800">
-                            <div class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="flex flex-col md:flex-row items-center gap-4">
                                 <div class="rotating-item flex-shrink-0 md:w-2/3 max-w-[150px] max-h-[150px]">
                                     {currentItem.icon}
                                 </div>
