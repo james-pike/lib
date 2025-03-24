@@ -253,7 +253,7 @@ const categories: Category[] = [
             {
                 title: "Wizard Hat",
                 description: "Enhances magical abilities",
-                icon: (<svg class="w-full h-full" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>),
+                icon: (<svg class="w-full h-full" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/></svg>),
                 metadata: {
                     weight: "20%",
                     durability: "High",
