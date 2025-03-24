@@ -11,7 +11,7 @@ export default component$(({ selectedClass }: ClassSelectProps) => {
 
   return (
     <Select.Root>
-      <Select.Trigger class="border-gray-800">
+      <Select.Trigger class="border-gray-800 border-2">
         <Select.DisplayValue placeholder={selectedClass.value} />
       </Select.Trigger>
       <Select.Popover gutter={8} class="bg-gray-800 text-gray-300">
