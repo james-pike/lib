@@ -65,7 +65,7 @@ export default component$(({ selectedClass }: ItemsProps) => {
             <div class="max-w-5xl mx-auto">
                 {filteredCategories.length > 0 ? (
                     <>
-                        <div class="rounded-sm p-4 shadow-md mb-0 border border-gray-700">
+                        <div class="rounded-sm p-4 shadow-md mb-0 border border-gray-800">
                             <div class="flex flex-col md:flex-row items-center gap-6">
                                 <div class="rotating-item flex-shrink-0 md:w-2/3 max-w-[150px] max-h-[150px]">
                                     {currentItem.icon}
@@ -95,7 +95,7 @@ export default component$(({ selectedClass }: ItemsProps) => {
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-4 sm:flex sm:space-x-4 w-full mt-1 border-gray-700 border shadow-md p-2 rounded-sm mb-1">
+                        <div class="grid grid-cols-4 sm:flex sm:space-x-4 w-full mt-1 border-gray-800 border shadow-md p-2 rounded-sm mb-1">
                             {filteredCategories.map((category, index) => (
                                 <button
                                     key={index}
@@ -110,7 +110,7 @@ export default component$(({ selectedClass }: ItemsProps) => {
                             ))}
                         </div>
 
-                        <div class="grid grid-cols-3 border-gray-700 border p-4 lg:grid-cols-4 gap-0.5 md:gap-4 xl:gap-8 md:mb-8">
+                        <div class="grid grid-cols-3 border-gray-800 border p-4 lg:grid-cols-4 gap-0.5 md:gap-4 xl:gap-8 md:mb-8">
                             {currentCategory.items.map((item, index) => (
                                 <div
                                     key={index}
