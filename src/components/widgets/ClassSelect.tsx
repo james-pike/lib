@@ -1,4 +1,4 @@
-import { component$, PropFunction, Signal } from '@builder.io/qwik';
+import { component$, Signal } from '@builder.io/qwik';
 import { LuCheck } from '@qwikest/icons/lucide';
 import { Select } from '../ui/Select';
 
