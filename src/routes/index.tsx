@@ -42,7 +42,6 @@ export default component$(() => {
         />
 
 <Inventory title="Inventory Items"
-        subtitle="Browse inventory items and rarity."
         highlight="Inventory"
         />
 
