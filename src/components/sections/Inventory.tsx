@@ -32,7 +32,7 @@ export default component$((props: Props) => {
                         </div>
                     </div>
                 </Card.Header>
-                <Card.Content class="p-1">
+                <Card.Content class="p-2">
                     <Items selectedClass={selectedClass.value} />
                 </Card.Content>
             </Card.Root>
